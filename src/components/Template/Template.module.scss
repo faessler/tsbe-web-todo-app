@@ -1,0 +1,15 @@
+@import '../../styles/mixins.scss';
+
+.content {
+  max-width: 100%;
+  width: 980px;
+  margin: 0 auto;
+  padding: 10px;
+
+  @include breakpoint(sm) {
+    padding: 20px;
+  }
+  @include breakpoint(md) {
+    padding: 40px;
+  }
+}

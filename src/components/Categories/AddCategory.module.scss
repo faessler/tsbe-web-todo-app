@@ -1,0 +1,30 @@
+@import "../../styles/mixins.scss";
+
+.button {
+  display: flex;
+  justify-content: center;
+  margin: 15px 10px;
+}
+
+.form {
+  display: grid;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 3px 3px 10px #cdcdcd, -3px -3px 10px #ffffff;
+  border-radius: 10px;
+
+  @include breakpoint(md) {
+    margin-top: 30px;
+    padding: 20px;
+  }
+}
+
+.label {
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.input {
+  margin-bottom: 15px;
+}

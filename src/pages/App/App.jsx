@@ -1,14 +1,10 @@
 import React from 'react';
-import { useAuthContext } from '../../context/auth';
+import Categories from '../../components/Categories/Categories';
 
-const App = () => {
-  const auth = useAuthContext();
-  return (
-    <div>
-      <h1>App</h1>
-      <button onClick={auth.signOut}>Logout</button>
-    </div>
-  );
-};
+const App = () => (
+  <div>
+    <Categories />
+  </div>
+);
 
 export default App;
