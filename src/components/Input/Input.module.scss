@@ -1,0 +1,16 @@
+.container {
+  display: grid;
+}
+
+.label {
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.input {
+  appearance: none;
+  padding: 7px 10px;
+  font-size: 16px;
+  border: 1px solid;
+  border-radius: 5px;
+}

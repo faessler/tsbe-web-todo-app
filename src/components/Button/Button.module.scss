@@ -1,0 +1,31 @@
+.button {
+  padding: 7px 14px;
+  font-size: 16px;
+  border: 1px solid #3498db;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.primary {
+  background-color: #3498db;
+  color: #fff;
+
+  &:hover {
+    background-color: darken(#3498db, 10%);
+    border-color: darken(#3498db, 10%);
+  }
+}
+
+.secondary {
+  background-color: #ffffff;
+  color: #3498db;
+
+  &:hover {
+    background-color: darken(#ffffff, 5%);
+    border-color: darken(#3498db, 10%);
+  }
+}

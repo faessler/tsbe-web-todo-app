@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { addCategoryAPI } from '../../api/categoryAPI';
+import Button from '../Button/Button';
+import Input from '../Input/Input';
 import styles from './AddCategory.module.scss';
 
 const AddCategory = ({ setCategories }) => {
@@ -21,36 +24,34 @@ const AddCategory = ({ setCategories }) => {
 
   return !showForm ? (
     <div className={styles.button}>
-      <button onClick={() => setShowForm(true)}>Add Category</button>
+      <Button onClick={() => setShowForm(true)}>Add Category</Button>
     </div>
   ) : (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <label htmlFor="newCategoryTitle" className={styles.label}>Title</label>
-      <input
-        type="text"
-        id="newCategoryTitle"
-        className={styles.input}
-        value={titleInput}
-        onChange={(e) => setTitleInput(e.target.value)}
-        required
-      />
-      <label htmlFor="newCategoryDescription" className={styles.label}>Description</label>
-      <input
-        type="text"
-        id="newCategoryDescription"
-        className={styles.input}
-        value={descriptionInput}
-        onChange={(e) => setDescriptionInput(e.target.value)}
-        required
-      />
-      <div>
-        <button type="button" onClick={() => setShowForm(false)}>
+      <div className={styles.input}>
+        <Input label="Title" type="text" value={titleInput} onChange={(e) => setTitleInput(e.target.value)} required />
+      </div>
+      <div className={styles.input}>
+        <Input
+          label="Description"
+          type="text"
+          value={descriptionInput}
+          onChange={(e) => setDescriptionInput(e.target.value)}
+          required
+        />
+      </div>
+      <div className={styles.controls}>
+        <Button type="submit">Save</Button>
+        <Button skin={Button.SKINS.SECONDARY} type="button" onClick={() => setShowForm(false)}>
           Cancel
-        </button>
-        <button type="submit">Save</button>
+        </Button>
       </div>
     </form>
   );
+};
+
+AddCategory.propTypes = {
+  setCategories: PropTypes.func,
 };
 
 export default AddCategory;
