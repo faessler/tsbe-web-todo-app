@@ -13,7 +13,7 @@ const fetchy = async (endpoint, method, body) => {
     referrerPolicy: 'no-referrer',
     headers: {
       'Content-Type': 'application/json',
-      ...(auth ? { authorization: `${auth.token_type} ${auth.access_token}` } : {}),
+      ...(auth ? { Authorization: `${auth.token_type} ${auth.access_token}` } : {}),
     },
     ...(body ? { body: JSON.stringify(body) } : {}),
   });

@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { addCategoryAPI } from '../../api/categoryAPI';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import styles from './AddCategory.module.scss';
 
-const AddCategory = ({ setCategories }) => {
+const AddCategory = ({ addCategory }) => {
   const [titleInput, setTitleInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
   const [showForm, setShowForm] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCategoryAPI(titleInput, descriptionInput).then((response) => {
-      if (response.status === 200) {
-        setCategories((categories) => [...categories, response.data]);
+    addCategory(titleInput, descriptionInput, (errorMessage) => {
+      if (errorMessage) {
+        setError(errorMessage);
+      } else {
+        setError(null);
         setTitleInput('');
         setDescriptionInput('');
         setShowForm(false);
@@ -40,6 +42,7 @@ const AddCategory = ({ setCategories }) => {
           required
         />
       </div>
+      {!!error && <div className={styles.error}>{error}</div>}
       <div className={styles.controls}>
         <Button type="submit">Save</Button>
         <Button skin={Button.SKINS.SECONDARY} type="button" onClick={() => setShowForm(false)}>
@@ -51,7 +54,7 @@ const AddCategory = ({ setCategories }) => {
 };
 
 AddCategory.propTypes = {
-  setCategories: PropTypes.func,
+  addCategory: PropTypes.func,
 };
 
 export default AddCategory;
