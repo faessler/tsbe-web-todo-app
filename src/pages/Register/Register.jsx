@@ -69,7 +69,9 @@ const Register = () => {
           </form>
           <Ruler />
           <p className={styles.login}>
-            Already have an account? <Link to="/login">Login here!</Link>
+            <i>
+              Already have an account? <Link to="/login">Login here!</Link>
+            </i>
           </p>
         </>
       )}
