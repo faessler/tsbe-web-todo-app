@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TodoProvider from '../../context/todo/TodoProvider';
 import useCategoryContext from '../../context/category/useCategoryContext';
 import { STATUS } from '../../constants/api';
 import Button from '../Button/Button';
@@ -29,7 +30,9 @@ const Category = ({ id, title, description }) => {
         </Button>
       </div>
       <Ruler />
-      <Todos id={id} />
+      <TodoProvider categoryId={id}>
+        <Todos />
+      </TodoProvider>
     </div>
   );
 };

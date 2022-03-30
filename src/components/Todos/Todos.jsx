@@ -1,32 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { STATUS } from '../../constants/api';
-import { useTodos } from '../../hooks/useTodos';
-import Button from '../Button/Button';
+import useTodoContext from '../../context/todo/useTodoContext';
+import AddTodo from './AddTodo';
+import Todo from './Todo';
+import Error from '../Error/Error';
+import styles from './Todos.module.scss';
 
-const Todos = ({ id }) => {
-  const { status, todos, addTodo, removeTodo } = useTodos(id);
+const Todos = () => {
+  const { status, todos } = useTodoContext();
+
   return (
-    <div>
-      {status === STATUS.LOADING && 'LOADING...'}
-      {status === STATUS.FAILURE && "ERROR! Couldn't load the todos."}
+    <>
+      {status === STATUS.LOADING && <i>LOADING...</i>}
+      {status === STATUS.FAILURE && <Error>Error: Couldn't load the todos.</Error>}
       {status === STATUS.SUCCESS && (
-        <div>
-          {todos.map((item) => (
-            <div key={item.id}>
-              {item.title} {item.description}
-              <button onClick={() => removeTodo(item.id)}>X</button>
-            </div>
-          ))}
-          <Button onClick={() => addTodo('Title', 'DesssCr')}>Add todo</Button>
-        </div>
+        <>
+          <div className={styles.todos}>
+            {todos
+              .sort((a, b) => a.done - b.done)
+              .map(({ id, title, description, done }) => (
+                <Todo key={id} id={id} title={title} description={description} done={done} />
+              ))}
+          </div>
+          <AddTodo />
+        </>
       )}
-    </div>
+    </>
   );
-};
-
-Todos.propTypes = {
-  id: PropTypes.number,
 };
 
 export default Todos;

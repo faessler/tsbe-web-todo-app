@@ -9,4 +9,13 @@ export const addTodoAPI = (categoryId, title, description) =>
     description,
   });
 
+export const updateTodoAPI = (todoId, { title, description, done, dueDate, categoryId }) =>
+  fetchy(`/users/me/todo/${todoId}`, 'PATCH', {
+    title,
+    description,
+    done,
+    due_date: dueDate,
+    category_id: categoryId,
+  });
+
 export const removeTodoAPI = (todoId) => fetchy(`/users/me/todo/${todoId}`, 'DELETE');

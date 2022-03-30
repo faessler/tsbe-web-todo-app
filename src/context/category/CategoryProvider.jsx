@@ -12,9 +12,10 @@ const CategoryProvider = ({ children }) => {
   const [removeStatus, setRemoveStatus] = useState(STATUS.INITIAL);
   const [removeError, setRemoveError] = useState('');
 
-  const [status, setStatus] = useState(STATUS.LOADING);
+  const [status, setStatus] = useState(STATUS.INITIAL);
 
   useEffect(() => {
+    setStatus(STATUS.LOADING);
     getCategoriesAPI().then((response) => {
       if (response.status === 200) {
         setCategories(response.data);

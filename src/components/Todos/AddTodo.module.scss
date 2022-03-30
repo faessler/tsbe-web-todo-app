@@ -1,0 +1,22 @@
+@import "../../styles/mixins.scss";
+
+.button {
+  display: flex;
+  justify-content: center;
+  margin: 15px 10px;
+
+  @include breakpoint(md) {
+    margin-top: 30px;
+  }
+}
+
+.form {
+  display: grid;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+}
