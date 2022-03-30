@@ -4,6 +4,7 @@ import { STATUS } from '../../constants/api';
 import { useAuthContext } from '../../context/auth';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
+import Ruler from '../../components/Ruler/Ruler';
 import styles from './Login.module.scss';
 
 const Login = () => {
@@ -60,7 +61,7 @@ const Login = () => {
           Submit
         </Button>
       </form>
-      <hr className={styles.ruler} />
+      <Ruler />
       <p className={styles.register}>
         <i>
           Don't have an account? <Link to="/register">Register now!</Link>

@@ -4,6 +4,7 @@ import useCategoryContext from '../../context/category/useCategoryContext';
 import { STATUS } from '../../constants/api';
 import Button from '../Button/Button';
 import Error from '../Error/Error';
+import Ruler from '../Ruler/Ruler';
 import Todos from '../Todos/Todos';
 import styles from './Category.module.scss';
 
@@ -27,7 +28,7 @@ const Category = ({ id, title, description }) => {
           Remove Category
         </Button>
       </div>
-      <hr className={styles.ruler} />
+      <Ruler />
       <Todos id={id} />
     </div>
   );

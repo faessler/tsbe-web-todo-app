@@ -4,6 +4,7 @@ import signUpAPI from '../../api/signUpAPI';
 import { STATUS } from '../../constants/api';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
+import Ruler from '../../components/Ruler/Ruler';
 import styles from './Register.module.scss';
 
 const Register = () => {
@@ -66,7 +67,7 @@ const Register = () => {
               Submit
             </Button>
           </form>
-          <hr className={styles.ruler} />
+          <Ruler />
           <p className={styles.login}>
             Already have an account? <Link to="/login">Login here!</Link>
           </p>
