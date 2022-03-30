@@ -1,4 +1,5 @@
 export const STATUS = {
+  INITIAL: "INITIAL",
   LOADING: "LOADING",
   FAILURE: "FAILURE",
   SUCCESS: "SUCCESS",

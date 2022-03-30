@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { STATUS } from '../../constants/api';
+import useCategoryContext from '../../context/category/useCategoryContext';
 import Button from '../Button/Button';
+import Error from '../Error/Error';
 import Input from '../Input/Input';
 import styles from './AddCategory.module.scss';
 
-const AddCategory = ({ addCategory }) => {
+const AddCategory = () => {
+  const { add } = useCategoryContext();
   const [titleInput, setTitleInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
   const [showForm, setShowForm] = useState(false);
-  const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addCategory(titleInput, descriptionInput, (errorMessage) => {
-      if (errorMessage) {
-        setError(errorMessage);
-      } else {
-        setError(null);
+    add.action(titleInput, descriptionInput).then((data) => {
+      if (data.status === 200) {
         setTitleInput('');
         setDescriptionInput('');
         setShowForm(false);
@@ -30,22 +30,34 @@ const AddCategory = ({ addCategory }) => {
     </div>
   ) : (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.input}>
-        <Input label="Title" type="text" value={titleInput} onChange={(e) => setTitleInput(e.target.value)} required />
-      </div>
-      <div className={styles.input}>
-        <Input
-          label="Description"
-          type="text"
-          value={descriptionInput}
-          onChange={(e) => setDescriptionInput(e.target.value)}
-          required
-        />
-      </div>
-      {!!error && <div className={styles.error}>{error}</div>}
+      <Input
+        label="Title"
+        type="text"
+        value={titleInput}
+        onChange={(e) => setTitleInput(e.target.value)}
+        disabled={add.status === STATUS.LOADING}
+        required
+      />
+      <Input
+        label="Description"
+        type="text"
+        value={descriptionInput}
+        onChange={(e) => setDescriptionInput(e.target.value)}
+        disabled={add.status === STATUS.LOADING}
+        required
+      />
+      {add.status === STATUS.LOADING && 'Loading...'}
+      {add.status === STATUS.FAILURE && <Error>{add.error}</Error>}
       <div className={styles.controls}>
-        <Button type="submit">Save</Button>
-        <Button skin={Button.SKINS.SECONDARY} type="button" onClick={() => setShowForm(false)}>
+        <Button type="submit" disabled={add.status === STATUS.LOADING}>
+          Save
+        </Button>
+        <Button
+          skin={Button.SKINS.SECONDARY}
+          type="button"
+          onClick={() => setShowForm(false)}
+          disabled={add.status === STATUS.LOADING}
+        >
           Cancel
         </Button>
       </div>

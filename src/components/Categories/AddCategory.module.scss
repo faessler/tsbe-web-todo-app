@@ -12,6 +12,7 @@
 
 .form {
   display: grid;
+  gap: 15px;
   margin-top: 15px;
   padding: 10px;
   background-color: white;
@@ -22,16 +23,6 @@
     margin-top: 30px;
     padding: 20px;
   }
-}
-
-.input {
-  margin-bottom: 15px;
-}
-
-.error {
-  color: #e74c3c;
-  font-weight: bold;
-  margin-bottom: 15px;
 }
 
 .controls {
