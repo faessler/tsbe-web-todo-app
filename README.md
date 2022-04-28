@@ -32,4 +32,6 @@ The flow of the whole web app works as followed:
 The backend is created with the [FastAPI](https://fastapi.tiangolo.com/) framework which allows this frontend application to create, read, update and delete data. For more information check out the [todo_backend](https://gitlab.iet-gibb.ch/jerome.jamin/todo_backend) repository or once the FastAPI is running locally go to the [API docs](http://localhost:8000/docs). The data is stored in a [SQLite](https://www.sqlite.org/) database.
 
 ## Conclusion
+To develop this todo app wasn't very challenging for me as a frontend engineer. Although I enjoyed to create a new project from scratch and to take time and brain to think about how to structure the application code.
 
+The only problem I encountered was with the `/users/me/todo/` API, I was only able to update or delete the newest todo item I created. After some knowledge exchange with my class mates I came to the conclusion that something wasn't right with the backend API.
